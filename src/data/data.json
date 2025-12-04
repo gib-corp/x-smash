@@ -1,0 +1,114 @@
+[
+    {
+        "id": "mario",
+        "name": "Mario"
+    },
+    {
+        "id": "donkey",
+        "name": "Donkey Kong"
+    },
+    {
+        "id": "link",
+        "name": "Link"
+    },
+    {
+        "id": "samus",
+        "name": "Samus"
+    },
+    {
+        "id": "yoshi",
+        "name": "Yoshi"
+    },
+    {
+        "id": "kirby",
+        "name": "Kirby"
+    },
+    {
+        "id": "fox",
+        "name": "Fox"
+    },
+    {
+        "id": "pikachu",
+        "name": "Pikachu"
+    },
+    {
+        "id": "luigi",
+        "name": "Luigi"
+    },
+    {
+        "id": "ness",
+        "name": "Ness"
+    },
+    {
+        "id": "captain",
+        "name": "Captain Falcon"
+    },
+    {
+        "id": "purin",
+        "name": "Jigglypuff"
+    },
+    {
+        "id": "peach",
+        "name": "Peach"
+    },
+    {
+        "id": "daisy",
+        "name": "Daisy"
+    },
+    {
+        "id": "koopa",
+        "name": "Bowser"
+    },
+    {
+        "id": "ice_climber",
+        "name": "Ice Climber"
+    },
+    {
+        "id": "sheik",
+        "name": "Sheik"
+    },
+    {
+        "id": "zelda",
+        "name": "Zelda"
+    },
+    {
+        "id": "mariod",
+        "name": "Dr Mario"
+    },
+    {
+        "id": "pichu",
+        "name": "Pichu"
+    },
+    {
+        "id": "falco",
+        "name": "Falco"
+    },
+    {
+        "id": "marth",
+        "name": "Marth"
+    },
+    {
+        "id": "lucina",
+        "name": "Lucina"
+    },
+    {
+        "id": "younglink",
+        "name": "Young Link"
+    },
+    {
+        "id": "ganon",
+        "name": "Ganondorf"
+    },
+    {
+        "id": "mewtwo",
+        "name": "MewTwo"
+    },
+    {
+        "id": "roy",
+        "name": "Roy"
+    },
+    {
+        "id": "chrom",
+        "name": "Chrom"
+    }
+]
