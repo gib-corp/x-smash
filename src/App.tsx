@@ -1,15 +1,18 @@
 import Layout from './layouts/Layout'
 import Cursor from './components/Cursor/Cursor'
 import CharacterGrid from './components/CharacterGrid/CharacterGrid'
+import { CursorProvider } from './contexts/CursorContext'
 import characters from './data/data.json'
 
 function App() {
 
   return (
-    <Layout>
-      <Cursor cursorType={"drop"}/>
-      <CharacterGrid characters={characters} />
-    </Layout>
+    <CursorProvider>
+      <Layout>
+        <Cursor/>
+        <CharacterGrid characters={characters} />
+      </Layout>
+    </CursorProvider>
   )
 }
 

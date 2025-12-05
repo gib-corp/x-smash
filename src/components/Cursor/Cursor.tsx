@@ -1,15 +1,12 @@
 import { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
+import { useCursor } from '../../contexts/CursorContext'
 import CursorDefault from '../../assets/cursors/default.png'
 import CursorHold from '../../assets/cursors/hold.png'
 import CursorDrop from '../../assets/cursors/drop.png'
 import './Cursor.css'
 
 type CursorType = 'default' | 'hold' | 'drop'
-
-interface CursorProps {
-  cursorType: CursorType;
-}
 
 const getCursorImage = (type: CursorType) => {
   const cursor: Record<CursorType, string> = {
@@ -21,15 +18,19 @@ const getCursorImage = (type: CursorType) => {
   return cursor[type]
 }
 
-const Cursor = ({ cursorType }: CursorProps) => {
+const Cursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null)
+  const { cursorType } = useCursor()
 
   useEffect(() => {
     const el = cursorRef.current
     if (!el) return
+    
+    const cursorWidth = el.offsetWidth
+    const cursorHeight = el.offsetHeight
 
-    const offsetX = -26
-    const offsetY = -22
+    const offsetX = -(cursorWidth * 0.26)
+    const offsetY = -(cursorHeight * 0.22)
 
     const move = (e: MouseEvent) => {
       gsap.set(el, { x: e.clientX + offsetX, y: e.clientY + offsetY, opacity: 1 })
