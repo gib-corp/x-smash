@@ -1,6 +1,9 @@
 import CharacterCard from "../CharacterCard/CharacterCard";
 import "./CharacterGrid.css"
-const fighterImages = import.meta.glob("/src/assets/fighters/**/*", { eager: true })
+
+const fighterImages = import.meta.glob<{
+  default: string
+}>("/src/assets/fighters/**/*", { eager: true });
 
 interface Character {
   id: string;
@@ -14,7 +17,13 @@ interface CharacterGridProps {
 const CharacterGrid = ({ characters }: CharacterGridProps) => {
 
     const getPortrait = (character: Character) => {
-        return fighterImages[`/src/assets/fighters/${character.id}/chara_7_${character.id}_00.png`]?.default || "/src/assets/fighters/default.png";
+        const file = fighterImages[`/src/assets/fighters/${character.id}/chara_7_${character.id}_00.png`]
+
+        if (!file) {
+            return "/src/assets/fighters/steve/chara_7_steve_00.png";
+        }
+
+        return typeof file === "string" ? file : file.default;
     }
 
     return (
