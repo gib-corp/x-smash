@@ -1,4 +1,5 @@
-import CharacterCard from "../CharacterCard/CharacterCard";
+import CharacterCard from "../CharacterCard/CharacterCard"
+import { useCursor } from "../../contexts/CursorContext"
 import "./CharacterGrid.css"
 
 const fighterImages = import.meta.glob<{
@@ -16,6 +17,16 @@ interface CharacterGridProps {
 
 const CharacterGrid = ({ characters }: CharacterGridProps) => {
 
+    const { setCursorType } = useCursor()
+
+    const handleMouseEnter = () => {
+        setCursorType("hold")
+    }
+
+    const handleMouseLeave = () => {
+        setCursorType("default")
+    }
+
     const getPortrait = (character: Character) => {
         const file = fighterImages[`/src/assets/fighters/${character.id}/chara_7_${character.id}_00.png`]
 
@@ -27,7 +38,10 @@ const CharacterGrid = ({ characters }: CharacterGridProps) => {
     }
 
     return (
-        <div className="character-grid">
+        <div
+        className="character-grid"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}>
             {characters.map((char) => (
                 <CharacterCard
                     key={char.id}

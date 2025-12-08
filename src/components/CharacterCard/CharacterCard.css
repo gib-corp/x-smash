@@ -8,5 +8,6 @@
 }
 
 .character-img {
+  pointer-events: none;
   height: 155%;
 }
