@@ -4,7 +4,7 @@ import "./CharacterGrid.css"
 
 const fighterImages = import.meta.glob<{
   default: string
-}>("/src/assets/fighters/**/*", { eager: true });
+}>("/src/assets/fighters/**/*", { eager: true })
 
 interface Character {
   id: string;
@@ -17,14 +17,42 @@ interface CharacterGridProps {
 
 const CharacterGrid = ({ characters }: CharacterGridProps) => {
 
-    const { setCursorType } = useCursor()
+    const {
+        setCursorType,
+        selectedCharacterId,
+        setSelectedCharacterId,
+        setLockedRelativeOffset
+    } = useCursor()
 
     const handleMouseEnter = () => {
-        setCursorType("hold")
+        if (selectedCharacterId === null) {
+            setCursorType('hold')
+        }
     }
 
     const handleMouseLeave = () => {
-        setCursorType("default")
+        if (selectedCharacterId === null) {
+            setCursorType('default')
+        }
+    }
+
+    const handleCharacterClick = (e: React.MouseEvent<HTMLDivElement>, characterId: string) => {
+        if (selectedCharacterId === null) {
+        
+            const domId = `character-card-${characterId}`
+            const cardElement = document.getElementById(domId)
+
+            if (cardElement) {
+                const rect = cardElement.getBoundingClientRect();
+
+                const relativeX = e.clientX - rect.left
+                const relativeY = e.clientY - rect.top
+
+                setLockedRelativeOffset({ x: relativeX, y: relativeY })
+                setSelectedCharacterId(domId);
+                setCursorType('drop');
+            }
+        } 
     }
 
     const getPortrait = (character: Character) => {
@@ -47,6 +75,7 @@ const CharacterGrid = ({ characters }: CharacterGridProps) => {
                     key={char.id}
                     id={char.id}
                     image={getPortrait(char)}
+                    onClick={(e) => handleCharacterClick(e, char.id)}
                 />
             ))}
         </div>
