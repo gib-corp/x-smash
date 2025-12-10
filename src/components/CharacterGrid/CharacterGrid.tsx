@@ -21,7 +21,8 @@ const CharacterGrid = ({ characters }: CharacterGridProps) => {
         setCursorType,
         selectedCharacterId,
         setSelectedCharacterId,
-        setLockedRelativeOffset
+        setLockedRelativeOffset,
+        setClickTargetPosition
     } = useCursor()
 
     const handleMouseEnter = () => {
@@ -37,6 +38,18 @@ const CharacterGrid = ({ characters }: CharacterGridProps) => {
     }
 
     const handleCharacterClick = (e: React.MouseEvent<HTMLDivElement>, characterId: string) => {
+        
+        if (selectedCharacterId !== null) {
+            
+            setClickTargetPosition({ x: e.clientX, y: e.clientY });
+
+            setSelectedCharacterId(null);
+            setLockedRelativeOffset({ x: null, y: null });
+            
+            setCursorType('hold');
+            return;
+        }
+        
         if (selectedCharacterId === null) {
         
             const domId = `character-card-${characterId}`

@@ -11,7 +11,13 @@ const isCoinVisible = (type: CursorType) => {
 
 const Coin = () => {
     const coinRef = useRef<HTMLDivElement>(null)
-    const { cursorType, selectedCharacterId, lockedRelativeOffset } = useCursor()
+    const {
+        cursorType,
+        selectedCharacterId,
+        lockedRelativeOffset,
+        clickTargetPosition,
+        setClickTargetPosition
+    } = useCursor()
 
     const getCoinOffsets = useCallback((el: HTMLDivElement) => {
         const coinWidth = el.offsetWidth
@@ -55,11 +61,7 @@ const Coin = () => {
         return
       }
 
-      const coinWidth = el.offsetWidth
-      const coinHeight = el.offsetHeight
-
-      const offsetX = -(coinWidth * 0.51)
-      const offsetY = -(coinHeight * 0.552)
+      const { adjustX: offsetX, adjustY: offsetY } = getCoinOffsets(el)
 
       const move = (e: MouseEvent) => {
           gsap.set(el, { x: e.clientX + offsetX, y: e.clientY + offsetY })
@@ -70,7 +72,26 @@ const Coin = () => {
       return () => {
           window.removeEventListener("mousemove", move)
       }
-    }, [cursorType])
+    }, [cursorType, getCoinOffsets])
+
+    useEffect(() => {
+        const el = coinRef.current
+        if (!el || !clickTargetPosition) return
+        
+        const { x: targetX, y: targetY } = clickTargetPosition
+        const { adjustX: offsetX, adjustY: offsetY } = getCoinOffsets(el)
+        
+        gsap.to(el, { 
+            x: targetX + offsetX, 
+            y: targetY + offsetY,
+            duration: 0.09, 
+            ease: "power1.out",
+            onComplete: () => {
+                setClickTargetPosition(null) 
+            }
+        });
+        
+    }, [clickTargetPosition, getCoinOffsets, setClickTargetPosition])
 
     useEffect(() => {
         if (cursorType === 'drop' && selectedCharacterId) {
