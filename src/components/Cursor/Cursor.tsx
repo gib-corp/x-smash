@@ -6,18 +6,6 @@ import CursorHold from '../../assets/cursors/hold.png'
 import CursorDrop from '../../assets/cursors/drop.png'
 import './Cursor.css'
 
-type CursorType = 'default' | 'hold' | 'drop'
-
-const getCursorImage = (type: CursorType) => {
-  const cursor: Record<CursorType, string> = {
-    hold: CursorHold,
-    drop: CursorDrop,
-    default: CursorDefault,
-  }
-
-  return cursor[type]
-}
-
 const Cursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null)
   const { cursorType } = useCursor()
@@ -53,7 +41,21 @@ const Cursor = () => {
 
   return (
     <div className="cursor" ref={cursorRef}>
-      <img src={getCursorImage(cursorType)} alt="Cursor" />
+      <img 
+          src={CursorDefault} 
+          alt="Curseur Default"
+          style={{ opacity: cursorType === 'default' ? 1 : 0 }}
+      />
+      <img 
+          src={CursorHold} 
+          alt="Curseur Hold"
+          style={{ opacity: cursorType === 'hold' ? 1 : 0 }}
+      />
+      <img 
+          src={CursorDrop} 
+          alt="Curseur Drop"
+          style={{ opacity: cursorType === 'drop' ? 1 : 0 }}
+      />
     </div>
   )
 }
