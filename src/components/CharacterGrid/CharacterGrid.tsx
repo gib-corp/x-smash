@@ -87,6 +87,7 @@ const CharacterGrid = ({ characters }: CharacterGridProps) => {
                 <CharacterCard
                     key={char.id}
                     id={char.id}
+                    name={char.name}
                     image={getPortrait(char)}
                     onMouseDown={(e) => handleMouseDown(e, char.id)}
                 />

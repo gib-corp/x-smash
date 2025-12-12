@@ -6,6 +6,34 @@
   border: .18rem solid transparent;
 }
 
+.character-name {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  padding-bottom: .15rem;
+  z-index: 88;
+  color: white;
+  font-family: "RodinNTLG", sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1;
+  text-shadow:
+    -2px 0 0 #000,
+     2px 0 0 #000,
+     0 -2px 0 #000,
+     0  2px 0 #000,
+    -2px -2px 0 #000,
+     2px -2px 0 #000,
+    -2px  2px 0 #000,
+     2px  2px 0 #000,
+     4px 3px 0px rgba(0, 0, 0, 1);
+}
+
 .character-container {
   width: 100%;
   aspect-ratio: 16 / 11;
@@ -18,7 +46,7 @@
 .character-img {
   pointer-events: none;
   height: 155%;
-  z-index: 88;
+  z-index: 77;
 }
 
 .character-frame {

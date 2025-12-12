@@ -5,11 +5,12 @@ import "./CharacterCard.css";
 
 interface CharacterCardProps {
   id: string;
+  name: string;
   image: string | undefined;
   onMouseDown: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
-const CharacterCard = ({ id, image, onMouseDown }: CharacterCardProps) => {
+const CharacterCard = ({ id, name, image, onMouseDown }: CharacterCardProps) => {
 
   const pathRef = useRef(null);
   const domId = `character-card-${id}`
@@ -20,11 +21,11 @@ const CharacterCard = ({ id, image, onMouseDown }: CharacterCardProps) => {
   const isCoinActive = cursorType === 'drop' && domId === selectedCharacterId;
 
   const handleMouseEnter = () => {
-    setIsHovered(true);
+    setIsHovered(true)
   };
 
   const handleMouseLeave = () => {
-    setIsHovered(false);
+    setIsHovered(false)
   };
 
   const frameClasses = [
@@ -52,9 +53,7 @@ const CharacterCard = ({ id, image, onMouseDown }: CharacterCardProps) => {
         timeline.kill();
       };
     }
-  }, [id]);
-
-  console.log('selectedCharacterId', selectedCharacterId)
+  }, [id])
 
   return (
     <div
@@ -73,6 +72,9 @@ const CharacterCard = ({ id, image, onMouseDown }: CharacterCardProps) => {
               
               fill="#FFDCDA"/>
         </svg>  
+      </div>
+      <div className="character-name">
+        {name}
       </div>
       <div className="character-container">
         {image ? (
