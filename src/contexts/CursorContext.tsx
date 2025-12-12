@@ -24,7 +24,10 @@ interface CursorContextType {
   setLockedRelativeOffset: (offset: RelativeOffset) => void;
 
   clickTargetPosition: Coordinates | null; 
-  setClickTargetPosition: (pos: Coordinates | null) => void
+  setClickTargetPosition: (pos: Coordinates | null) => void;
+
+  dropTargetId: string | null;
+  setDropTargetId: (id: string | null) => void;
 }
 
 const CursorContext = createContext<CursorContextType>({
@@ -35,7 +38,9 @@ const CursorContext = createContext<CursorContextType>({
   lockedRelativeOffset: { x: null, y: null }, 
   setLockedRelativeOffset: () => {},
   clickTargetPosition: null, 
-  setClickTargetPosition: () => {}
+  setClickTargetPosition: () => {},
+  dropTargetId: null,
+  setDropTargetId: () => {},
 })
 
 interface CursorProviderProps {
@@ -47,6 +52,7 @@ export const CursorProvider = ({ children }: CursorProviderProps) => {
   const [selectedCharacterId, setSelectedCharacterId] = useState<string | null>(null)
   const [lockedRelativeOffset, setLockedRelativeOffset] = useState<RelativeOffset>({ x: null, y: null })
   const [clickTargetPosition, setClickTargetPosition] = useState<Coordinates | null>(null)
+  const [dropTargetId, setDropTargetId] = useState<string | null>(null)
 
   const contextValue = useMemo(() => ({
     cursorType,
@@ -57,11 +63,14 @@ export const CursorProvider = ({ children }: CursorProviderProps) => {
     setLockedRelativeOffset,
     clickTargetPosition, 
     setClickTargetPosition,
+    dropTargetId,
+    setDropTargetId,
   }), [
     cursorType,
     selectedCharacterId,
     lockedRelativeOffset,
-    clickTargetPosition
+    clickTargetPosition,
+    dropTargetId
   ]);
 
   return (

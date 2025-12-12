@@ -53,13 +53,11 @@ const Coin = () => {
         }
     }, [selectedCharacterId, cursorType, lockedRelativeOffset])
 
+    //TRACKING
     useEffect(() => {
       const el = coinRef.current
       if (!el) return
-
-      if (cursorType === 'drop') {
-        return
-      }
+      if (cursorType === 'drop') { return }
 
       const { adjustX: offsetX, adjustY: offsetY } = getCoinOffsets(el)
 
@@ -74,6 +72,7 @@ const Coin = () => {
       }
     }, [cursorType, getCoinOffsets])
 
+    //MAGNETO
     useEffect(() => {
         const el = coinRef.current
         if (!el || !clickTargetPosition) return
@@ -93,12 +92,14 @@ const Coin = () => {
         
     }, [clickTargetPosition, getCoinOffsets, setClickTargetPosition])
 
+    //LOCKED
     useEffect(() => {
         if (cursorType === 'drop' && selectedCharacterId) {
             calculateAndSetPosition();
         }
     }, [cursorType, selectedCharacterId, calculateAndSetPosition])
 
+    //RESIZE-WINDOW
     useEffect(() => {
         window.addEventListener('resize', calculateAndSetPosition)
         
@@ -107,6 +108,7 @@ const Coin = () => {
         }
     }, [calculateAndSetPosition])
 
+    //OPACITY
     useEffect(() => {
         const el = coinRef.current
         if (!el) return

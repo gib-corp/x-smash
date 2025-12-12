@@ -1,6 +1,14 @@
 .character-card {
   width: 100%;
   aspect-ratio: 16 / 11;
+  position: relative;
+  display: flex;
+  border: .18rem solid transparent;
+}
+
+.character-container {
+  width: 100%;
+  aspect-ratio: 16 / 11;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,4 +18,36 @@
 .character-img {
   pointer-events: none;
   height: 155%;
+  z-index: 88;
+}
+
+.character-frame {
+  position: absolute;
+  top: -.15rem;
+  bottom: -.15rem;
+  left: -.15rem;
+  right: -.15rem;
+  z-index: 99;
+
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  pointer-events: none;
+}
+
+.character-frame svg {
+    width: 100%;
+    height: 100%;
+}
+
+.character-frame svg path {
+    stroke: black;
+    stroke-width: 2;
+}
+
+.character-frame.is-hover-active {
+    opacity: 1;
+}
+
+.character-frame.is-coin-active {
+    opacity: 1;
 }

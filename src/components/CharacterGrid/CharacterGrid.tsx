@@ -37,7 +37,7 @@ const CharacterGrid = ({ characters }: CharacterGridProps) => {
         }
     }
 
-    const handleCharacterClick = (e: React.MouseEvent<HTMLDivElement>, characterId: string) => {
+    const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>, characterId: string) => {
         
         if (selectedCharacterId !== null) {
             
@@ -88,7 +88,7 @@ const CharacterGrid = ({ characters }: CharacterGridProps) => {
                     key={char.id}
                     id={char.id}
                     image={getPortrait(char)}
-                    onClick={(e) => handleCharacterClick(e, char.id)}
+                    onMouseDown={(e) => handleMouseDown(e, char.id)}
                 />
             ))}
         </div>
